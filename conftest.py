@@ -51,7 +51,8 @@ def wait_for_webapp_to_come_up():
 
 @pytest.fixture(scope='session')
 def postgres_db():
-    engine = create_engine(config.get_sqlite_uri())
+    from sqlalchemy.pool import SingletonThreadPool
+    engine = create_engine(config.get_sqlite_uri(), poolclass=SingletonThreadPool)
     wait_for_db_to_come_up(engine)
     metadata.create_all(engine)
     return engine

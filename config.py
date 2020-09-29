@@ -1,7 +1,7 @@
 import os
 
 def get_sqlite_uri():
-    return f"sqlite:///C:/dev/cosmicpython/db/site.db"
+    return f"sqlite:///C:/dev/cosmicpython/db/site.db?check_same_thread=False"
 
 
 def get_postgres_uri():

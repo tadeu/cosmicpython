@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.pool import SingletonThreadPool
 
 import config
 import model
@@ -10,7 +11,7 @@ import services
 
 
 orm.start_mappers()
-get_session = sessionmaker(bind=create_engine(config.get_sqlite_uri()))
+get_session = sessionmaker(bind=create_engine(config.get_sqlite_uri(), poolclass=SingletonThreadPool, pool_size=20))
 app = Flask(__name__)
 
 @app.route("/allocate", methods=['POST'])
