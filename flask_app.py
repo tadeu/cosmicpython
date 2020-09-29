@@ -10,7 +10,7 @@ import services
 
 
 orm.start_mappers()
-get_session = sessionmaker(bind=create_engine(config.get_postgres_uri()))
+get_session = sessionmaker(bind=create_engine(config.get_sqlite_uri()))
 app = Flask(__name__)
 
 @app.route("/allocate", methods=['POST'])

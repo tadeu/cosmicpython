@@ -1,5 +1,9 @@
 import os
 
+def get_sqlite_uri():
+    return f"sqlite:///C:/dev/cosmicpython/db/site.db"
+
+
 def get_postgres_uri():
     host = os.environ.get('DB_HOST', 'localhost')
     port = 54321 if host == 'localhost' else 5432
@@ -9,7 +13,8 @@ def get_postgres_uri():
 
 
 def get_api_url():
-    host = os.environ.get('API_HOST', 'localhost')
-    port = 5005 if host == 'localhost' else 80
-    return f"http://{host}:{port}"
+    # host = os.environ.get('API_HOST', 'localhost')
+    # port = 5005 if host == 'localhost' else 80
+    # return f"http://{host}:{port}"
+    return f"http://127.0.0.1:5005"
 

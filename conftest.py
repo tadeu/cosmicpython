@@ -27,7 +27,7 @@ def session(in_memory_db):
     clear_mappers()
 
 
-def wait_for_postgres_to_come_up(engine):
+def wait_for_db_to_come_up(engine):
     deadline = time.time() + 10
     while time.time() < deadline:
         try:
@@ -51,8 +51,8 @@ def wait_for_webapp_to_come_up():
 
 @pytest.fixture(scope='session')
 def postgres_db():
-    engine = create_engine(config.get_postgres_uri())
-    wait_for_postgres_to_come_up(engine)
+    engine = create_engine(config.get_sqlite_uri())
+    wait_for_db_to_come_up(engine)
     metadata.create_all(engine)
     return engine
 
